@@ -4,7 +4,6 @@ import com.DAO.DAOException;
 import com.DAO.DAOManager;
 import com.DAO.Recursos.GestionarRecursos;
 import com.Modelos.Combos.ClientesComboModel;
-import com.Modelos.Tablas.ListaTareasTableModel;
 import com.Modelos.Tablas.ModeloTablaTarea;
 import com.modelo.Cliente;
 import com.modelo.Tarea;

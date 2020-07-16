@@ -26,16 +26,14 @@ public class ModeloTablaTarea extends ModeloTabla<Tarea, DAOTareas> {
 
     @Override
     public int getRowCount() {
-        return (int)listaDatos.stream().filter(e -> e.getEstado() == Parametros.PORHACER.getId()).count();
+        return (int) listaDatos.stream().filter(e -> e.getEstado() == Parametros.PORHACER.getId()).count();
     }
 
-    
-    
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
 
         try {
-            Tarea tarea =  listaDatos.stream().filter(e -> e.getEstado() == Parametros.PORHACER.getId()).collect(Collectors.toList()).get(rowIndex);
+            Tarea tarea = listaDatos.stream().filter(e -> e.getEstado() == Parametros.PORHACER.getId()).collect(Collectors.toList()).get(rowIndex);
             DateTimeFormatter formatoFechas = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
             switch (columnIndex) {
