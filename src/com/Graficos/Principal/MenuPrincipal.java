@@ -412,6 +412,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         try {
             visualizarModuloClientes();
             modeloUno.actualizarListadoClientes();
+            JP_pendientes.actualizarModelos();
         } catch (DAOException ex) {
             GestionarRecursos.propagarError(ex);
         }

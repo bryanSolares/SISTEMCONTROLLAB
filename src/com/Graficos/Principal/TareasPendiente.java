@@ -66,7 +66,9 @@ public class TareasPendiente extends javax.swing.JPanel {
         this.JTBL_tareas.getColumnModel().getColumn(9).setPreferredWidth(0);
     }
 
-    private void actualizarModelos() throws DAOException {
+    public void actualizarModelos() throws DAOException {
+        tarea = null;
+        cargarDatos();
         modeloComboClientes.actualizarModelo();
         modeloTablaTareas.actualizarModelo();
         this.JTBL_tareas.setModel(modeloTablaTareas);
@@ -151,14 +153,14 @@ public class TareasPendiente extends javax.swing.JPanel {
 
         jLabel3.setText("FECHA CREACION:");
 
-        JB_crear.setText("CREAR");
+        JB_crear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Iconos/dibujar.png"))); // NOI18N
         JB_crear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JB_crearActionPerformed(evt);
             }
         });
 
-        JB_editar.setText("EDITAR");
+        JB_editar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Iconos/editar-.png"))); // NOI18N
         JB_editar.setEnabled(false);
         JB_editar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -166,7 +168,7 @@ public class TareasPendiente extends javax.swing.JPanel {
             }
         });
 
-        JB_eliminar.setText("ELIMINAR");
+        JB_eliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Iconos/borrar-.png"))); // NOI18N
         JB_eliminar.setEnabled(false);
         JB_eliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -174,11 +176,11 @@ public class TareasPendiente extends javax.swing.JPanel {
             }
         });
 
-        JB_convertir.setText("CONVERTIR");
+        JB_convertir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Iconos/convertir.png"))); // NOI18N
         JB_convertir.setToolTipText("CONVIERTE EL ELEMENTO EN UNA TAREA");
         JB_convertir.setEnabled(false);
 
-        JB_cancelar.setText("CANCELAR");
+        JB_cancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Iconos/cancelar-.png"))); // NOI18N
         JB_cancelar.setToolTipText("CONVIERTE EL ELEMENTO EN UNA TAREA");
         JB_cancelar.setEnabled(false);
         JB_cancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -192,19 +194,18 @@ public class TareasPendiente extends javax.swing.JPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(25, 25, 25)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(JB_crear, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(JB_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(JB_eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(JB_convertir, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(25, 25, 25)
+                        .addComponent(JB_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(25, 25, 25)
+                        .addComponent(JB_eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(JB_cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(25, 25, 25))
+                        .addComponent(JB_convertir, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(25, 25, 25)
+                        .addComponent(JB_cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
@@ -215,7 +216,7 @@ public class TareasPendiente extends javax.swing.JPanel {
                             .addComponent(JT_descripcion)
                             .addComponent(JCB_clientes, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(JD_fechainicio, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE))))
-                .addGap(99, 99, 99))
+                .addGap(25, 25, 25))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -239,7 +240,7 @@ public class TareasPendiente extends javax.swing.JPanel {
                     .addComponent(JB_eliminar)
                     .addComponent(JB_convertir)
                     .addComponent(JB_cancelar))
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         JTBL_tareas.setModel(new javax.swing.table.DefaultTableModel(
@@ -259,8 +260,8 @@ public class TareasPendiente extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 402, Short.MAX_VALUE)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 402, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -286,8 +287,6 @@ public class TareasPendiente extends javax.swing.JPanel {
             JB_cancelar.setEnabled(false);
             JTBL_tareas.clearSelection();
 
-            tarea = null;
-            cargarDatos();
             actualizarModelos();
         } catch (DAOException ex) {
             GestionarRecursos.propagarError(ex);
@@ -299,8 +298,6 @@ public class TareasPendiente extends javax.swing.JPanel {
             if (validaciones.validaCampos() && validaciones.validaCombos()) {
                 guardarDatos();
                 manager.getDAOTareas().crear(tarea);
-                tarea = null;
-                cargarDatos();
                 actualizarModelos();
             } else {
                 if (!validaciones.validaCampos()) {
@@ -319,8 +316,6 @@ public class TareasPendiente extends javax.swing.JPanel {
             if (validaciones.validaCampos() && validaciones.validaCombos()) {
                 guardarDatos();
                 manager.getDAOTareas().editar(tarea);
-                tarea = null;
-                cargarDatos();
                 actualizarModelos();
             } else {
                 if (!validaciones.validaCampos()) {
@@ -339,8 +334,6 @@ public class TareasPendiente extends javax.swing.JPanel {
             if (JOptionPane.showConfirmDialog(this, "Seguro que quiere eliminar este regitros", "Eliminar Cliente",
                     JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
                 manager.getDAOTareas().borrar(tarea.getId());
-                tarea = null;
-                cargarDatos();
                 actualizarModelos();
             }
         } catch (DAOException ex) {
