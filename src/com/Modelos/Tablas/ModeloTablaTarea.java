@@ -1,44 +1,41 @@
 package com.Modelos.Tablas;
 
 import com.DAO.DAOClientes;
-import com.DAO.DAOTareas;
 import com.DAO.DAOException;
+import com.DAO.DAOTareas;
 import com.DAO.Recursos.GestionarRecursos;
 import com.modelo.Parametros;
 import com.modelo.Tarea;
-import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.stream.Collectors;
 
-public class ListaTareasTableModel extends ModeloTabla<Tarea, DAOTareas> {
+public class ModeloTablaTarea extends ModeloTabla<Tarea, DAOTareas> {
 
-    private Long id_cliente;
-    private LocalDate fecha_ini;
-    private LocalDate fecha_fin;
-    private List<Tarea> lista = new ArrayList<>();
     private DAOClientes daoClientes;
 
-    public ListaTareasTableModel(DAOTareas solicitaModelo, DAOClientes daoClientes) {
+    public ModeloTablaTarea(DAOTareas solicitaModelo, DAOClientes daoClientes) {
         super(solicitaModelo);
         this.daoClientes = daoClientes;
-        id_cliente = null;
-        fecha_ini = null;
-        fecha_fin = null;
     }
 
     @Override
     public void actualizarModelo() throws DAOException {
-        datosTabla = solicitaModelo.busquedaConFiltros(id_cliente, fecha_ini, fecha_fin);
+        datosTabla = solicitaModelo.buscarTodos();
         super.actualizarModelo();
     }
 
     @Override
+    public int getRowCount() {
+        return (int)listaDatos.stream().filter(e -> e.getEstado() == Parametros.PORHACER.getId()).count();
+    }
+
+    
+    
+    @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
 
         try {
-            Tarea tarea = listaDatos.get(rowIndex);
+            Tarea tarea =  listaDatos.stream().filter(e -> e.getEstado() == Parametros.PORHACER.getId()).collect(Collectors.toList()).get(rowIndex);
             DateTimeFormatter formatoFechas = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
             switch (columnIndex) {
@@ -71,13 +68,6 @@ public class ListaTareasTableModel extends ModeloTabla<Tarea, DAOTareas> {
             GestionarRecursos.propagarError(ex, "Error en llamada de datos a TABLA en: " + this.getClass());
         }
         return "";
-
-    }
-
-    public void estableFiltros(Long cliente, LocalDate fecha_ini, LocalDate fecha_fin) {
-        id_cliente = cliente;
-        this.fecha_ini = fecha_ini;
-        this.fecha_fin = fecha_fin;
     }
 
 }

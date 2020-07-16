@@ -9,7 +9,7 @@ public enum Parametros {
     SIN_DEFINIR(0, "SIN DEFINIR"),
     SOPORTE(10, "Soporte"), NO_SOPORTE(11, "No Soporte"), //tipo cliente
     ALTA(20, "Alta"), MEDIA(21, "Media"), BAJA(22, "Baja"), //prioridad
-    INICIAL(30, "Inicial"), PROCESO(31, "En proceso"), PENDIENTE(32, "Pendiente"), FINAL(33, "Finalizado"), //estado tarea
+    INICIAL(30, "Inicial"), PROCESO(31, "En proceso"), PENDIENTE(32, "Pendiente"), FINAL(33, "Finalizado"), PORHACER(34,"Por Hacer"), //estado tarea
     ACTIVO(1, "Activo"), INACTIVO(2, "Inactivo"), //estado cliente
     TECNICO_1(40, "Técnico 1"), PROGRAMACION(41, "Programación"), TECNICO_2(42, "Técnico 2"),
     SICAF(50, "SICAF"), CONTAIVA(51, "CONTAIVA"), FICCONTA(52, "FICCONTA"), SICAFNET(53, "SICAF NET"),
@@ -65,6 +65,7 @@ public enum Parametros {
         listaParametros.add(Parametros.PROCESO);
         listaParametros.add(Parametros.PENDIENTE);
         listaParametros.add(Parametros.FINAL);
+        listaParametros.add(Parametros.PORHACER);
         return listaParametros;
     }
 

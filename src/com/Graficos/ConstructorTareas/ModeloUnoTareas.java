@@ -40,7 +40,8 @@ public class ModeloUnoTareas implements GeneradorTareasGraficas<TareaIndividual,
             listadoTareasDatos.clear();
             listadoTareasGraficas.clear();
 
-            listadoTareasDatos = manager.getDAOTareas().buscarTodos().values().iterator().next();
+            listadoTareasDatos = manager.getDAOTareas().buscarTodos().values().iterator().next()
+                    .stream().filter(e -> e.getEstado() != Parametros.PORHACER.getId()).collect(Collectors.toList());
 
             listadoTareasDatos.forEach(e -> {
                 try {

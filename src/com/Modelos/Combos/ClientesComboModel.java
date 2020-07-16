@@ -10,11 +10,14 @@ import java.util.List;
 import java.util.Map;
 import javax.swing.DefaultComboBoxModel;
 
-public class ClientesComboModel extends DefaultComboBoxModel<Cliente>{
+public class ClientesComboModel extends DefaultComboBoxModel<Cliente> {
 
     private DAOClientes cliente;
     private Map<ResultSetMetaData, List<Cliente>> mapeoClientes = new HashMap<>();
     private boolean filtraClienteActivos = false;
+
+    public ClientesComboModel() {
+    }
 
     public ClientesComboModel(DAOClientes cliente) {
         this.cliente = cliente;
@@ -43,9 +46,13 @@ public class ClientesComboModel extends DefaultComboBoxModel<Cliente>{
             }
         }
     }
-    
+
     public void filtraClienteActivos(boolean filtraClientesActivos) {
         this.filtraClienteActivos = filtraClientesActivos;
+    }
+    
+    public void setDAOClientes(DAOClientes clienteDao){
+        this.cliente = clienteDao;
     }
 
 }

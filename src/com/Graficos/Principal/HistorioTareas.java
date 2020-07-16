@@ -11,7 +11,6 @@ import com.modelo.Parametros;
 import com.modelo.Tarea;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;

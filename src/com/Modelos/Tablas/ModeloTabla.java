@@ -12,7 +12,7 @@ import javax.swing.table.AbstractTableModel;
 
 public abstract class ModeloTabla<T, D> extends AbstractTableModel {
 
-    protected final D solicitaModelo;
+    protected D solicitaModelo;
     protected Map<ResultSetMetaData, List<T>> datosTabla = new HashMap<>();
     protected List<T> listaDatos;
     protected ResultSetMetaData metadatos;
@@ -77,6 +77,10 @@ public abstract class ModeloTabla<T, D> extends AbstractTableModel {
     
     public T getElementByIndex(int index){
         return this.listaDatos.get(index);
+    }
+    
+    public void setDAO(D dao){
+        this.solicitaModelo = dao;
     }
 
 }

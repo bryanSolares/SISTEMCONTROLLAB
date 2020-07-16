@@ -3,7 +3,6 @@ package com.Modelos.Tablas;
 import com.DAO.DAOException;
 import com.DAO.DAOTareas;
 import com.modelo.Tarea;
-import java.util.ArrayList;
 
 public class ModeloTareasDetalle extends ModeloTabla<Tarea.TareaDetalle, DAOTareas> {
 

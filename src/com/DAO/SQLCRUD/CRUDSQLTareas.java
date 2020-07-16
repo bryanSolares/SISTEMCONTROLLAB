@@ -33,7 +33,7 @@ public class CRUDSQLTareas implements DAOTareas, IConvierteResultSetAClase<Tarea
             + "ESTADO = ?,DURACION = ?, FECHA_INICIO = ?,FECHA_FIN = ?, AREA = ? "
             + "WHERE ID_TAREA = ?";
     private final String borrarTarea = "DELETE FROM TAREAS WHERE ID_TAREA = ?";
-    private final String buscarTodasLasTareas = "SELECT * FROM TAREAS WHERE ESTADO != 33";
+    private final String buscarTodasLasTareas = "SELECT * FROM TAREAS WHERE ESTADO != 33 ";
     private final String buscarUnaTarea = "SELECT * FROM TAREAS WHERE ID_TAREA = ?";
     private final String modificaTiempos = "UPDATE TAREAS SET DURACION = ? WHERE ID_TAREA = ?";
 
