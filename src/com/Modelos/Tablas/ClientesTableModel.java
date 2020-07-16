@@ -15,6 +15,7 @@ public class ClientesTableModel extends ModeloTabla<Cliente, DAOClientes> {
     @Override
     public void actualizarModelo() throws DAOException {
         datosTabla = solicitaModelo.buscarTodos();
+        super.actualizarModelo();
     }
 
     @Override

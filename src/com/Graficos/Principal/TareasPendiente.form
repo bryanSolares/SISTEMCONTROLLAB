@@ -16,8 +16,8 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jScrollPane1" alignment="0" pref="402" max="32767" attributes="0"/>
-          <Component id="jPanel1" alignment="0" pref="402" max="32767" attributes="0"/>
+          <Component id="jScrollPane1" alignment="0" pref="0" max="32767" attributes="0"/>
+          <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -38,19 +38,18 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <Component id="JB_crear" min="-2" pref="55" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="JB_editar" min="-2" pref="57" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="JB_eliminar" min="-2" pref="50" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="JB_convertir" min="-2" pref="56" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="JB_cancelar" min="-2" pref="56" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                          <Component id="JB_editar" min="-2" pref="55" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                          <Component id="JB_eliminar" min="-2" pref="55" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="JB_convertir" min="-2" pref="55" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                          <Component id="JB_cancelar" min="-2" pref="55" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -66,7 +65,7 @@
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace min="99" pref="99" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -92,11 +91,11 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="JB_crear" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="JB_editar" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="JB_eliminar" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="JB_convertir" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="JB_cancelar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="JB_eliminar" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="JB_convertir" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="JB_cancelar" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="12" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -133,7 +132,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="JB_crear">
           <Properties>
-            <Property name="text" type="java.lang.String" value="CREAR"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/com/Iconos/dibujar.png"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JB_crearActionPerformed"/>
@@ -141,7 +142,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="JB_editar">
           <Properties>
-            <Property name="text" type="java.lang.String" value="EDITAR"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/com/Iconos/editar-.png"/>
+            </Property>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
@@ -150,7 +153,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="JB_eliminar">
           <Properties>
-            <Property name="text" type="java.lang.String" value="ELIMINAR"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/com/Iconos/borrar-.png"/>
+            </Property>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
@@ -159,14 +164,18 @@
         </Component>
         <Component class="javax.swing.JButton" name="JB_convertir">
           <Properties>
-            <Property name="text" type="java.lang.String" value="CONVERTIR"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/com/Iconos/convertir.png"/>
+            </Property>
             <Property name="toolTipText" type="java.lang.String" value="CONVIERTE EL ELEMENTO EN UNA TAREA"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="JB_cancelar">
           <Properties>
-            <Property name="text" type="java.lang.String" value="CANCELAR"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/com/Iconos/cancelar-.png"/>
+            </Property>
             <Property name="toolTipText" type="java.lang.String" value="CONVIERTE EL ELEMENTO EN UNA TAREA"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>

@@ -137,8 +137,8 @@ public class CRUDSQLClientes implements DAOClientes, IConvierteResultSetAClase<C
         } catch (SQLException e) {
             throw new DAOException("\n" + e.getLocalizedMessage());
         } finally {
-            GestionarRecursos.cerrarPreparedStatement(consultaPreparada);
-            GestionarRecursos.cerrarResultSet(resultados);
+//            GestionarRecursos.cerrarPreparedStatement(consultaPreparada);
+//            GestionarRecursos.cerrarResultSet(resultados);
         }
     }
 
