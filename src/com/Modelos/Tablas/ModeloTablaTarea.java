@@ -7,6 +7,7 @@ import com.DAO.Recursos.GestionarRecursos;
 import com.modelo.Parametros;
 import com.modelo.Tarea;
 import java.time.format.DateTimeFormatter;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class ModeloTablaTarea extends ModeloTabla<Tarea, DAOTareas> {
@@ -66,6 +67,10 @@ public class ModeloTablaTarea extends ModeloTabla<Tarea, DAOTareas> {
             GestionarRecursos.propagarError(ex, "Error en llamada de datos a TABLA en: " + this.getClass());
         }
         return "";
+    }
+
+    public Tarea getElementById(Long id) {
+        return listaDatos.stream().filter(e -> Objects.equals(id, e.getId())).findAny().get();
     }
 
 }

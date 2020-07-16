@@ -22,9 +22,10 @@ public abstract class ModeloTabla<T, D> extends AbstractTableModel {
         this.listaDatos = new ArrayList<>();
     }
 
-    protected void actualizarModelo()throws DAOException {
+    protected void actualizarModelo() throws DAOException {
         this.listaDatos = datosTabla.values().iterator().next();
         this.metadatos = datosTabla.keySet().iterator().next();
+        this.fireTableDataChanged();
     }
 
     @Override
@@ -69,18 +70,20 @@ public abstract class ModeloTabla<T, D> extends AbstractTableModel {
     }
 
     public void removeElementWithIndex(int index) {
-        if(index <= listaDatos.size()){
+        if (index <= listaDatos.size()) {
             this.listaDatos.remove(index);
             this.fireTableDataChanged();
         }
     }
-    
-    public T getElementByIndex(int index){
+
+    public T getElementByIndex(int index) {
         return this.listaDatos.get(index);
     }
-    
-    public void setDAO(D dao){
+
+    public void setDAO(D dao) {
         this.solicitaModelo = dao;
     }
+
+    //public abstract T getElementById(Long id);
 
 }

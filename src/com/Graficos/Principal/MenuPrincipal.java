@@ -25,7 +25,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     public MenuPrincipal(DAOManager manager) {
         initComponents();
-        this.JP_pendientes.setDAOClientes(manager);
+        this.JP_pendientes.setDAO(manager);
         this.manager = manager;
         modeloUno = new ModeloUnoTareas(manager, this);
         GridLayout grid = new GridLayout(5, 2, 2, 2);

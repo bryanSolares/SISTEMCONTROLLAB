@@ -182,10 +182,10 @@ public class CRUDSQLTareas implements DAOTareas, IConvierteResultSetAClase<Tarea
             consultaPreparada = conexion.prepareStatement(borrarDetalleTarea);
             consultaPreparada.setLong(1, tarea.getId());
 
-            if (consultaPreparada.executeUpdate() == 0) {
-                throw new DAOException("Error al eliminar detalles");
-            }
-        } catch (DAOException | SQLException e) {
+//            if (consultaPreparada.executeUpdate() == 0) {
+//                throw new DAOException("Error al eliminar detalles");
+//            }
+        } catch (SQLException e) {
             throw new DAOException("Error al eliminar Tarea, no se finalizo la consulta", e);
         }
     }
