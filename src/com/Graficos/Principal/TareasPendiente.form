@@ -88,12 +88,14 @@
                       <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="JB_crear" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="JB_editar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="JB_eliminar" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="JB_convertir" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="JB_cancelar" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="JB_crear" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="JB_editar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -170,6 +172,9 @@
             <Property name="toolTipText" type="java.lang.String" value="CONVIERTE EL ELEMENTO EN UNA TAREA"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JB_convertirActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="JB_cancelar">
           <Properties>

@@ -4,6 +4,7 @@ import com.DAO.DAOException;
 import com.DAO.DAOManager;
 import com.DAO.Recursos.GestionarRecursos;
 import com.DAO.Recursos.Validaciones;
+import com.Graficos.Tarea.DatosTarea;
 import com.Modelos.Combos.ClientesComboModel;
 import com.Modelos.Tablas.ModeloTablaTarea;
 import com.modelo.Cliente;
@@ -21,6 +22,7 @@ public class TareasPendiente extends javax.swing.JPanel {
     private Tarea tarea;
     private DAOManager manager;
     private Validaciones validaciones;
+    private MenuPrincipal menuPrincipal;
 
     public TareasPendiente() {
         initComponents();
@@ -111,9 +113,10 @@ public class TareasPendiente extends javax.swing.JPanel {
         }
     }
 
-    public void setDAO(DAOManager manager) {
+    public void setDAO(DAOManager manager, MenuPrincipal principal) {
         try {
             this.manager = manager;
+            this.menuPrincipal = principal;
             modeloComboClientes.setDAOClientes(manager.getDAOClientes());
             modeloTablaTareas = new ModeloTablaTarea(manager.getDAOTareas(), manager.getDAOClientes());
             actualizarModelos();
@@ -179,6 +182,11 @@ public class TareasPendiente extends javax.swing.JPanel {
         JB_convertir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Iconos/convertir.png"))); // NOI18N
         JB_convertir.setToolTipText("CONVIERTE EL ELEMENTO EN UNA TAREA");
         JB_convertir.setEnabled(false);
+        JB_convertir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JB_convertirActionPerformed(evt);
+            }
+        });
 
         JB_cancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Iconos/cancelar-.png"))); // NOI18N
         JB_cancelar.setToolTipText("CONVIERTE EL ELEMENTO EN UNA TAREA");
@@ -234,12 +242,13 @@ public class TareasPendiente extends javax.swing.JPanel {
                     .addComponent(JD_fechainicio, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JB_crear)
-                    .addComponent(JB_editar)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(JB_eliminar)
                     .addComponent(JB_convertir)
-                    .addComponent(JB_cancelar))
+                    .addComponent(JB_cancelar)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(JB_crear)
+                        .addComponent(JB_editar)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -340,6 +349,21 @@ public class TareasPendiente extends javax.swing.JPanel {
             GestionarRecursos.propagarError(ex);
         }
     }//GEN-LAST:event_JB_eliminarActionPerformed
+
+    private void JB_convertirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_convertirActionPerformed
+        try {
+            DatosTarea detalleTarea = new DatosTarea(menuPrincipal, true, manager);
+            detalleTarea.setTarea(tarea);
+            detalleTarea.cargarDatos();
+            detalleTarea.setEditable(true);
+            detalleTarea.setLocationRelativeTo(menuPrincipal);
+            detalleTarea.setVisible(true);
+            menuPrincipal.visualizarTareasPendientes();
+            actualizarModelos();
+        } catch (DAOException ex) {
+            GestionarRecursos.propagarError(ex);
+        }
+    }//GEN-LAST:event_JB_convertirActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
