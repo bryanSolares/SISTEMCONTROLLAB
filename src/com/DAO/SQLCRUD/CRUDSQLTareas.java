@@ -41,9 +41,8 @@ public class CRUDSQLTareas implements DAOTareas, IConvierteResultSetAClase<Tarea
     private final String editarDetalleTarea = "UPDATE TAREAS_DETALLE SET DESCRIPCION = ? WHERE ID_DETALLE = ?";
     private final String borrarDetalleTarea = "DELETE FROM TAREAS_DETALLE WHERE ID_TAREA = ?";
     private final String buscarTodosLosDetalles = "SELECT * FROM TAREAS_DETALLE WHERE ID_TAREA = ?";
-    
-//    ALTER TABLE `TAREAS_DETALLE` ADD CONSTRAINT `FK_ID_TAREA` FOREIGN KEY (`ID_TAREA`) REFERENCES `TAREAS`(`ID_TAREA`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
+//    ALTER TABLE `TAREAS_DETALLE` ADD CONSTRAINT `FK_ID_TAREA` FOREIGN KEY (`ID_TAREA`) REFERENCES `TAREAS`(`ID_TAREA`) ON DELETE RESTRICT ON UPDATE RESTRICT;
     public CRUDSQLTareas(Connection conexion) {
         this.conexion = conexion;
     }
@@ -137,8 +136,10 @@ public class CRUDSQLTareas implements DAOTareas, IConvierteResultSetAClase<Tarea
                 throw new DAOException("Error al modificar Tarea");
             }
 
-            borrarDetalles(tarea);
-            crearDetalles(tarea, tarea.getId());
+            if (!tarea.getListaDetalles().isEmpty()) {
+                borrarDetalles(tarea);
+                crearDetalles(tarea, tarea.getId());
+            }
 
             conexion.commit();
 
@@ -181,7 +182,7 @@ public class CRUDSQLTareas implements DAOTareas, IConvierteResultSetAClase<Tarea
         try {
             consultaPreparada = conexion.prepareStatement(borrarDetalleTarea);
             consultaPreparada.setLong(1, tarea.getId());
-
+            consultaPreparada.executeUpdate();
 //            if (consultaPreparada.executeUpdate() == 0) {
 //                throw new DAOException("Error al eliminar detalles");
 //            }
@@ -212,9 +213,9 @@ public class CRUDSQLTareas implements DAOTareas, IConvierteResultSetAClase<Tarea
         tarea.setFechaInicio(horaInicio);
         tarea.setFechaFin(horaFin);
         tarea.setAreaResponsable(areaResponsable);
-        
+
         try {
-            tarea.setListaDetalles(buscarDetallesLista(id)); ;
+            tarea.setListaDetalles(buscarDetallesLista(id));;
         } catch (DAOException ex) {
             GestionarRecursos.propagarError(ex);
         }

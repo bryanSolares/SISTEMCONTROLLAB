@@ -88,6 +88,7 @@
                       <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
+<<<<<<< HEAD
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="JB_eliminar" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="JB_convertir" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -96,6 +97,14 @@
                           <Component id="JB_crear" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="JB_editar" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
+=======
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="JB_crear" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="JB_editar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="JB_eliminar" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="JB_convertir" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="JB_cancelar" alignment="0" min="-2" max="-2" attributes="0"/>
+>>>>>>> 04e5d71d92f6d6b53af6bb51ae57eed0064c4749
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
