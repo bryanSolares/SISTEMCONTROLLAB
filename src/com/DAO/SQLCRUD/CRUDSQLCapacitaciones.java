@@ -5,8 +5,8 @@ import com.DAO.DAOClientes;
 import com.DAO.DAOException;
 import com.DAO.Recursos.GestionarRecursos;
 import com.Modelo.Capacitacion;
-import com.modelo.Cliente;
-import com.modelo.Parametros;
+import com.Modelo.Cliente;
+import com.Modelo.Parametros;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -55,10 +55,10 @@ public class CRUDSQLCapacitaciones implements DAOCapacitaciones, IConvierteResul
 
             consultaPreparada = conexion.prepareStatement(crearCapacitacion, Statement.RETURN_GENERATED_KEYS);
             consultaPreparada.setLong(1, parametro.getIdCliente().getId());
-            consultaPreparada.setInt(2, parametro.getIdSistema().getId());
-            consultaPreparada.setInt(3, parametro.getResponsable().getId());
+            consultaPreparada.setLong(2, parametro.getIdSistema().getId());
+            consultaPreparada.setLong(3, parametro.getResponsable().getId());
             consultaPreparada.setInt(4, parametro.getEstadoActual());
-            consultaPreparada.setInt(5, parametro.getTipoCapacitacion().getId());
+            consultaPreparada.setLong(5, parametro.getTipoCapacitacion().getId());
             consultaPreparada.executeUpdate();
 
             Long idDisponible;
@@ -72,9 +72,9 @@ public class CRUDSQLCapacitaciones implements DAOCapacitaciones, IConvierteResul
             parametro.getDetalleModulos().forEach(elemento -> {
                 try {
                     insercionDetalle.setLong(1, idDisponible);
-                    insercionDetalle.setInt(2, elemento.getCodModulo().getId());
+                    insercionDetalle.setLong(2, elemento.getCodModulo().getId());
                     insercionDetalle.setString(3, elemento.getDescripcionModulo());
-                    insercionDetalle.setInt(4, elemento.getEstado().getId());
+                    insercionDetalle.setLong(4, elemento.getEstado().getId());
                     insercionDetalle.addBatch();
                 } catch (SQLException ex) {
                     GestionarRecursos.propagarError(ex);
@@ -104,11 +104,11 @@ public class CRUDSQLCapacitaciones implements DAOCapacitaciones, IConvierteResul
         try {
             consultaPreparada = conexion.prepareStatement(editarCapacitacion);
             consultaPreparada.setLong(1, parametro.getIdCliente().getId());
-            consultaPreparada.setInt(2, parametro.getIdSistema().getId());
+            consultaPreparada.setLong(2, parametro.getIdSistema().getId());
             consultaPreparada.setString(3, parametro.getFecha_fin().toString());
             consultaPreparada.setLong(4, parametro.getResponsable().getId());
             consultaPreparada.setInt(5, parametro.getEstadoActual());
-            consultaPreparada.setInt(6, parametro.getTipoCapacitacion().getId());
+            consultaPreparada.setLong(6, parametro.getTipoCapacitacion().getId());
             consultaPreparada.setLong(7, parametro.getIdCapacitacion());
 
             consultaPreparada.executeUpdate();

@@ -1,10 +1,10 @@
 package com.Modelos.Combos;
 
-import com.modelo.Parametros;
+import com.Modelo.Parametros;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 
-public class ParametrosComboModel extends DefaultComboBoxModel<Parametros> {
+public class ModeloComboParametros extends DefaultComboBoxModel<Parametros> {
 
     public static final int TIPO_CLIENTE = 1;
     public static final int TIPO_PRIORIDAD = 2;
@@ -16,7 +16,7 @@ public class ParametrosComboModel extends DefaultComboBoxModel<Parametros> {
     
     private Parametros parametros;
 
-    public ParametrosComboModel() {
+    public ModeloComboParametros() {
         parametros = Parametros.ACTIVO;
     }
 

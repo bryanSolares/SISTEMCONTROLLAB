@@ -4,8 +4,8 @@ import com.DAO.Recursos.Validaciones;
 import com.DAO.DAOManager;
 import com.DAO.DAOException;
 import com.DAO.Recursos.GestionarRecursos;
-import com.Modelos.Tablas.ClientesTableModel;
-import com.modelo.Cliente;
+import com.Modelos.Tablas.ModeloTablaClientes;
+import com.Modelo.Cliente;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -16,14 +16,14 @@ import javax.swing.table.TableRowSorter;
 public class Clientes extends javax.swing.JDialog {
 
     private DAOManager manager;
-    private ClientesTableModel modelo;
+    private ModeloTablaClientes modelo;
     private TableRowSorter<TableModel> modeloOrdenado;
 
     public Clientes(java.awt.Frame parent, boolean modal, DAOManager manager) throws DAOException {
         super(parent, modal);
         initComponents();
         this.manager = manager;
-        this.modelo = new ClientesTableModel(manager.getDAOClientes());
+        this.modelo = new ModeloTablaClientes(manager.getDAOClientes());
         this.modelo.actualizarModelo();
         clienteslista.setModel(modelo);
         modeloOrdenado = new TableRowSorter<>(clienteslista.getModel());

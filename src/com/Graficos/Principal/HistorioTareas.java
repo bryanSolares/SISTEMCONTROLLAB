@@ -4,11 +4,11 @@ import com.DAO.DAOManager;
 import com.DAO.DAOException;
 import com.DAO.Recursos.GestionarRecursos;
 import com.Graficos.Tarea.DatosTarea;
-import com.Modelos.Combos.ClientesComboModel;
-import com.Modelos.Tablas.ListaTareasTableModel;
-import com.modelo.Cliente;
-import com.modelo.Parametros;
-import com.modelo.Tarea;
+import com.Modelos.Combos.ModeloComboClientes;
+import com.Modelos.Tablas.ModeloTablaListaTareas;
+import com.Modelo.Cliente;
+import com.Modelo.Parametros;
+import com.Modelo.Tarea;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.time.LocalDate;
@@ -28,8 +28,8 @@ import javax.swing.table.TableRowSorter;
 public class HistorioTareas extends javax.swing.JFrame {
 
     private DAOManager manager;
-    private ListaTareasTableModel modeloTabla;
-    private ClientesComboModel modeloCombo;
+    private ModeloTablaListaTareas modeloTabla;
+    private ModeloComboClientes modeloCombo;
     private TableRowSorter<TableModel> modeloOrdenado;
     private MenuPrincipal menu;
 
@@ -39,7 +39,7 @@ public class HistorioTareas extends javax.swing.JFrame {
         this.menu = menu;
         iniciar();
         actualizaModelos();
-        procedimiento();
+        sumarTiemposTareas();
     }
 
     private void iniciar() {
@@ -48,8 +48,8 @@ public class HistorioTareas extends javax.swing.JFrame {
         } catch (Exception ex) {
             GestionarRecursos.propagarError(ex, "No se ha encontrado la imagen del proyecto favor verificar");
         }
-        modeloTabla = new ListaTareasTableModel(manager.getDAOTareas(), manager.getDAOClientes());
-        modeloCombo = new ClientesComboModel(manager.getDAOClientes());
+        modeloTabla = new ModeloTablaListaTareas(manager.getDAOTareas(), manager.getDAOClientes());
+        modeloCombo = new ModeloComboClientes(manager.getDAOClientes());
         fecha_ini.setDate(java.sql.Date.valueOf(LocalDate.now().minusDays(5)));
         fecha_fin.setDate(java.sql.Date.valueOf(LocalDate.now()));
 
@@ -62,11 +62,10 @@ public class HistorioTareas extends javax.swing.JFrame {
             duplicar.setEnabled(tareaslista.getSelectedRow() != -1);
         });
 
-//        procedimiento();
         modeloTabla.estableFiltros(null, LocalDate.now().minusDays(5), LocalDate.now());
     }
 
-    private void procedimiento() {
+    private void sumarTiemposTareas() {
         tareaslista.addMouseListener(new MouseAdapter() {
 
             List<String> listaTiempos = new ArrayList<>();
@@ -432,14 +431,7 @@ public class HistorioTareas extends javax.swing.JFrame {
     }
 
     private Tarea devuelveTareaSeleccionada() {
-        try {
-            Long id = (Long) tareaslista.getValueAt(tareaslista.getSelectedRow(), 0);
-            Tarea tarea = manager.getDAOTareas().buscarUno(id);
-            return tarea;
-        } catch (DAOException ex) {
-            GestionarRecursos.propagarError(ex, "Error al buscar Tarea en " + getClass());
-            return null;
-        }
+        return modeloTabla.getElementById((Long)tareaslista.getValueAt(tareaslista.getSelectedRow(), 0));
     }
 
     private boolean validaCamposFechas() {
@@ -454,7 +446,7 @@ public class HistorioTareas extends javax.swing.JFrame {
         return true;
     }
 
-    public ListaTareasTableModel getModeloTabla() {
+    public ModeloTablaListaTareas getModeloTabla() {
         return modeloTabla;
     }
 

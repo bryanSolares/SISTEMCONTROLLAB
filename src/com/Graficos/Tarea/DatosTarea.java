@@ -5,12 +5,12 @@ import com.DAO.DAOManager;
 import com.DAO.Recursos.Animaciones;
 import com.DAO.DAOException;
 import com.DAO.Recursos.GestionarRecursos;
-import com.Modelos.Combos.ClientesComboModel;
-import com.Modelos.Combos.ParametrosComboModel;
+import com.Modelos.Combos.ModeloComboClientes;
+import com.Modelos.Combos.ModeloComboParametros;
 import com.Modelos.Tablas.ModeloTareasDetalle;
-import com.modelo.Cliente;
-import com.modelo.Parametros;
-import com.modelo.Tarea;
+import com.Modelo.Cliente;
+import com.Modelo.Parametros;
+import com.Modelo.Tarea;
 import java.awt.Color;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -20,8 +20,8 @@ import javax.swing.table.DefaultTableModel;
 
 public class DatosTarea extends javax.swing.JDialog {
 
-    private ClientesComboModel modeloComboCliente;
-    private ParametrosComboModel modeloPrioridad, estadoModelo, modeloArea;
+    private ModeloComboClientes modeloComboCliente;
+    private ModeloComboParametros modeloPrioridad, estadoModelo, modeloArea;
     private final DAOManager manager;
     private Tarea tarea;
     private boolean editable;
@@ -39,10 +39,18 @@ public class DatosTarea extends javax.swing.JDialog {
 
         modeloTablaDetalle = new ModeloTareasDetalle(manager.getDAOTareas());
         modeloTablaDetalle.actualizarModelo();
-        tabla.setModel(modeloTablaDetalle);
-
+        JT_detalles.setModel(modeloTablaDetalle);
+        modificarFormaTabla();
+        
         validarCampos();
         scroll_descripcion.setVisible(false);
+    }
+    
+    private void modificarFormaTabla(){
+        JT_detalles.getColumnModel().getColumn(0).setPreferredWidth(0);
+        JT_detalles.getColumnModel().getColumn(1).setPreferredWidth(0);
+        JT_detalles.getColumnModel().getColumn(2).setPreferredWidth(600);
+        JT_detalles.setRowHeight(35);
     }
 
     private void iniciar() {
@@ -53,19 +61,19 @@ public class DatosTarea extends javax.swing.JDialog {
 
     private void agregarModelosACombos() throws DAOException {
 
-        modeloPrioridad = new ParametrosComboModel();
-        estadoModelo = new ParametrosComboModel();
-        modeloArea = new ParametrosComboModel();
-        modeloComboCliente = new ClientesComboModel(manager.getDAOClientes());
+        modeloPrioridad = new ModeloComboParametros();
+        estadoModelo = new ModeloComboParametros();
+        modeloArea = new ModeloComboParametros();
+        modeloComboCliente = new ModeloComboClientes(manager.getDAOClientes());
         modeloComboCliente.filtraClienteActivos(true);
         modeloComboCliente.actualizarModelo();
         clientes.setModel(modeloComboCliente);
         prioridad.setModel(modeloPrioridad);
-        modeloPrioridad.actualizarCombo(ParametrosComboModel.TIPO_PRIORIDAD);
+        modeloPrioridad.actualizarCombo(ModeloComboParametros.TIPO_PRIORIDAD);
         estado.setModel(estadoModelo);
-        estadoModelo.actualizarCombo(ParametrosComboModel.TIPO_ESTADO_TAREA);
+        estadoModelo.actualizarCombo(ModeloComboParametros.TIPO_ESTADO_TAREA);
         area.setModel(modeloArea);
-        modeloArea.actualizarCombo(ParametrosComboModel.TIPO_REPONSABLE_SOPORTE);
+        modeloArea.actualizarCombo(ModeloComboParametros.TIPO_REPONSABLE_SOPORTE);
 
     }
 
@@ -240,7 +248,7 @@ public class DatosTarea extends javax.swing.JDialog {
         dato.setEnabled(editable);
         agregar.setEnabled(editable);
         eliminar.setEnabled(editable);
-        tabla.setEnabled(editable);
+        JT_detalles.setEnabled(editable);
     }
 
     public Tarea getTarea() {
@@ -282,7 +290,7 @@ public class DatosTarea extends javax.swing.JDialog {
         jPanel3 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tabla = new javax.swing.JTable();
+        JT_detalles = new javax.swing.JTable();
         scroll_descripcion = new javax.swing.JScrollPane();
         descripcion = new javax.swing.JTextArea();
 
@@ -524,7 +532,7 @@ public class DatosTarea extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        tabla.setModel(new javax.swing.table.DefaultTableModel(
+        JT_detalles.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null}
             },
@@ -547,8 +555,9 @@ public class DatosTarea extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
-        tabla.setEnabled(false);
-        jScrollPane2.setViewportView(tabla);
+        JT_detalles.setEnabled(false);
+        JT_detalles.setName("Detalles de Tareas"); // NOI18N
+        jScrollPane2.setViewportView(JT_detalles);
 
         descripcion.setColumns(1);
         descripcion.setLineWrap(true);
@@ -632,7 +641,7 @@ public class DatosTarea extends javax.swing.JDialog {
 
             if (detalle == null) {
                 detalle = new Tarea().new TareaDetalle();
-                detalle.setIdDetalle(modeloTablaDetalle.getRowCount());
+                detalle.setIdDetalle(Long.valueOf(modeloTablaDetalle.getRowCount()));
             }
 
             detalle.setDescripcion(descrip);
@@ -645,13 +654,13 @@ public class DatosTarea extends javax.swing.JDialog {
 
     private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed
 
-        if (tabla.getModel().getRowCount() > 0) {
-            if (tabla.getSelectedRow() >= 0) {
-                int fila = tabla.getSelectedRow();
+        if (JT_detalles.getModel().getRowCount() > 0) {
+            if (JT_detalles.getSelectedRow() >= 0) {
+                int fila = JT_detalles.getSelectedRow();
                 detalle = modeloTablaDetalle.getElementByIndex(fila);
                 modeloTablaDetalle.removeElementWithIndex(fila);
             } else {
-                detalle = modeloTablaDetalle.getElementByIndex(tabla.getRowCount()-1);
+                detalle = modeloTablaDetalle.getElementByIndex(JT_detalles.getRowCount()-1);
                 modeloTablaDetalle.removeElementWithIndex(modeloTablaDetalle.getRowCount()-1);
             }
             dato.setText(detalle.getDescripcion());
@@ -677,6 +686,7 @@ public class DatosTarea extends javax.swing.JDialog {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable JT_detalles;
     private javax.swing.JButton agregar;
     private javax.swing.JComboBox<Parametros> area;
     private javax.swing.JComboBox<Cliente> clientes;
@@ -705,7 +715,6 @@ public class DatosTarea extends javax.swing.JDialog {
     private javax.swing.JComboBox<Parametros> prioridad;
     private javax.swing.JButton salir;
     private javax.swing.JScrollPane scroll_descripcion;
-    private javax.swing.JTable tabla;
     private javax.swing.JLabel texto_descripcion;
     // End of variables declaration//GEN-END:variables
 

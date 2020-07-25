@@ -1,6 +1,6 @@
 package com.Graficos.ConstructorTareas;
 
-import com.modelo.Parametros;
+import com.Modelo.Parametros;
 import java.util.List;
 import java.util.Map;
 

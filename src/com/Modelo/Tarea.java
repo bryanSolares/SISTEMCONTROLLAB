@@ -1,11 +1,11 @@
-package com.modelo;
+package com.Modelo;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class Tarea {
+public class Tarea extends ModeloGeneral{
 
     private Long id;
     private String titulo;
@@ -37,37 +37,42 @@ public class Tarea {
         listaDetalles = new ArrayList<>();
     }
 
-    public class TareaDetalle {
+    @Override
+    public Long getIdElement() {
+        return this.id;
+    }
 
-        private int idDetalle;
-        private int idTarea;
+    public class TareaDetalle extends ModeloGeneral{
+
+        private Long idDetalle;
+        private Long idTarea;
         private String descripcion;
 
         public TareaDetalle() {
-            this.idDetalle = 0;
-            this.idTarea = 0;
+            this.idDetalle = 0L;
+            this.idTarea = 0L;
             this.descripcion = "";
         }
 
-        public TareaDetalle(int idDetalle, int idTarea, String descripcion) {
+        public TareaDetalle(Long idDetalle, Long idTarea, String descripcion) {
             this.idDetalle = idDetalle;
             this.idTarea = idTarea;
             this.descripcion = descripcion;
         }
 
-        public int getIdDetalle() {
+        public Long getIdDetalle() {
             return idDetalle;
         }
 
-        public void setIdDetalle(int idDetalle) {
+        public void setIdDetalle(Long idDetalle) {
             this.idDetalle = idDetalle;
         }
 
-        public int getIdTarea() {
+        public Long getIdTarea() {
             return idTarea;
         }
 
-        public void setIdTarea(int idTarea) {
+        public void setIdTarea(Long idTarea) {
             this.idTarea = idTarea;
         }
 
@@ -82,7 +87,7 @@ public class Tarea {
         @Override
         public int hashCode() {
             int hash = 7;
-            hash = 29 * hash + this.idDetalle;
+            hash = (int) (29 * hash + this.idDetalle);
             return hash;
         }
 
@@ -98,7 +103,7 @@ public class Tarea {
                 return false;
             }
             final TareaDetalle other = (TareaDetalle) obj;
-            if (this.idDetalle != other.idDetalle) {
+            if (!Objects.equals(this.idDetalle, other.idDetalle)) {
                 return false;
             }
             return true;
@@ -109,6 +114,11 @@ public class Tarea {
         @Override
         public String toString() {
             return "TareaDetalle{" + "idDetalle=" + idDetalle + ", idTarea=" + idTarea + ", descripcion=" + descripcion + '}';
+        }
+
+        @Override
+        public Long getIdElement() {
+            return this.idDetalle;
         }
 
     }
@@ -197,7 +207,7 @@ public class Tarea {
         return listaDetalles;
     }
 
-    public void agregarADetalle(int idDetalle, int idTarea, String descripcion) {
+    public void agregarADetalle(Long idDetalle, Long idTarea, String descripcion) {
         listaDetalles.add(new TareaDetalle(idDetalle, idTarea, descripcion));
     }
 

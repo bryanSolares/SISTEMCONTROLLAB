@@ -3,7 +3,7 @@ package com.test;
 import com.DAO.DAOException;
 import com.DAO.Recursos.GestionarRecursos;
 import com.Graficos.Principal.MenuPrincipal;
-import com.modelo.Tarea;
+import com.Modelo.Tarea;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TimerTask;

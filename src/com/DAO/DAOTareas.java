@@ -1,6 +1,6 @@
 package com.DAO;
 
-import com.modelo.Tarea;
+import com.Modelo.Tarea;
 import java.sql.ResultSetMetaData;
 import java.time.LocalDate;
 import java.util.List;

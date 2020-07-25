@@ -3,7 +3,7 @@ package com.DAO.SQLCRUD;
 import com.DAO.DAOException;
 import com.DAO.DAOTareas;
 import com.DAO.Recursos.GestionarRecursos;
-import com.modelo.Tarea;
+import com.Modelo.Tarea;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -416,7 +416,7 @@ public class CRUDSQLTareas implements DAOTareas, IConvierteResultSetAClase<Tarea
             resultados = consultaPreparada.executeQuery();
 
             while (resultados.next()) {
-                t.agregarADetalle(resultados.getInt(1), resultados.getInt(2), resultados.getString(3));
+                t.agregarADetalle(resultados.getLong(1), resultados.getLong(2), resultados.getString(3));
             }
 
             metadata = resultados.getMetaData();
@@ -439,7 +439,7 @@ public class CRUDSQLTareas implements DAOTareas, IConvierteResultSetAClase<Tarea
             ResultSet result = consultaPreparada.executeQuery();
 
             while (result.next()) {
-                detalles.add(new Tarea().new TareaDetalle(result.getInt(1), result.getInt(2), result.getString(3)));
+                detalles.add(new Tarea().new TareaDetalle(result.getLong(1), result.getLong(2), result.getString(3)));
             }
 
             return detalles;

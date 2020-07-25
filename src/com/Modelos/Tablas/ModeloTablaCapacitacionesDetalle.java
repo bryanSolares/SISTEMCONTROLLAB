@@ -52,4 +52,9 @@ public class ModeloTablaCapacitacionesDetalle extends ModeloTabla<Capacitacion.C
         return listaDetalleCapacitacion;
     }
 
+    @Override
+    public Capacitacion.CapacitacionDetalle getElementById(Long id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

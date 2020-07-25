@@ -1,26 +1,26 @@
 package com.Graficos.Cliente;
 
 import com.DAO.Recursos.Validaciones;
-import com.Modelos.Combos.ParametrosComboModel;
-import com.modelo.Cliente;
-import com.modelo.Parametros;
+import com.Modelos.Combos.ModeloComboParametros;
+import com.Modelo.Cliente;
+import com.Modelo.Parametros;
 
 public class DatosCliente extends javax.swing.JPanel{
 
     private Cliente cliente;
     private boolean editable;
-    private ParametrosComboModel modeloTipoCliente, modeloTipoSistema;
+    private ModeloComboParametros modeloTipoCliente, modeloTipoSistema;
     private Validaciones camposValidados;
 
     public DatosCliente() {
         initComponents();
-        modeloTipoCliente = new ParametrosComboModel();
+        modeloTipoCliente = new ModeloComboParametros();
         tipo_cliente.setModel(modeloTipoCliente);
-        modeloTipoCliente.actualizarCombo(ParametrosComboModel.TIPO_CLIENTE);
+        modeloTipoCliente.actualizarCombo(ModeloComboParametros.TIPO_CLIENTE);
        
-        modeloTipoSistema = new ParametrosComboModel();
+        modeloTipoSistema = new ModeloComboParametros();
         tipo_sistema.setModel(modeloTipoSistema);
-        modeloTipoSistema.actualizarCombo(ParametrosComboModel.TIPO_SISTEMA);
+        modeloTipoSistema.actualizarCombo(ModeloComboParametros.TIPO_SISTEMA);
         validarCampos();
     }
 

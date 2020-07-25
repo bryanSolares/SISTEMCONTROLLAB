@@ -1,10 +1,10 @@
-package com.modelo;
+package com.Modelo;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public enum Parametros {
+public enum Parametros{
 
     SIN_DEFINIR(0, "SIN DEFINIR"),
     SOPORTE(10, "Soporte"), NO_SOPORTE(11, "No Soporte"), //tipo cliente
@@ -185,4 +185,5 @@ public enum Parametros {
                 return null;
         }
     }
+
 }

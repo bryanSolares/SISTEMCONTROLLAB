@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 import javax.swing.table.AbstractTableModel;
 
-public abstract class ModeloTabla<T, D> extends AbstractTableModel {
+public abstract class ModeloTabla <T,D> extends AbstractTableModel {
 
     protected D solicitaModelo;
     protected Map<ResultSetMetaData, List<T>> datosTabla = new HashMap<>();
@@ -84,6 +84,7 @@ public abstract class ModeloTabla<T, D> extends AbstractTableModel {
         this.solicitaModelo = dao;
     }
 
-    //public abstract T getElementById(Long id);
+    
+    public abstract T getElementById(Long id);
 
 }

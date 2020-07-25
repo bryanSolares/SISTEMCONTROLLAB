@@ -2,13 +2,13 @@ package com.Modelos.Tablas;
 
 import com.DAO.DAOClientes;
 import com.DAO.DAOException;
-import com.modelo.Cliente;
-import com.modelo.Parametros;
+import com.Modelo.Cliente;
+import com.Modelo.Parametros;
 
-public class ClientesTableModel extends ModeloTabla<Cliente, DAOClientes> {
+public class ModeloTablaClientes extends ModeloTabla<Cliente,DAOClientes> {
 
     
-    public ClientesTableModel(DAOClientes solicitaModelo) {
+    public ModeloTablaClientes(DAOClientes solicitaModelo) {
         super(solicitaModelo);
     }
 
@@ -40,6 +40,11 @@ public class ClientesTableModel extends ModeloTabla<Cliente, DAOClientes> {
             default:
                 return "";
         }
+    }
+
+    @Override
+    public Cliente getElementById(Long id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

@@ -10,12 +10,12 @@ import com.DAO.Recursos.GestionarRecursos;
 import com.Graficos.ConstructorTareas.GeneradorTareasGraficas;
 import com.Graficos.ConstructorTareas.ModeloUnoTareas;
 import com.test.ProcesosAutomaticos;
-import com.modelo.*;
 import java.awt.GridLayout;
 import java.util.List;
 import java.util.Timer;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import com.Modelo.Parametros;
 
 public class MenuPrincipal extends javax.swing.JFrame {
 

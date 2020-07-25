@@ -47,5 +47,10 @@ public class ModeloTablaCapacitaciones extends ModeloTabla<Capacitacion, DAOCapa
     public List<Capacitacion> getListaDetalleCapacitaciones() {
         return listaDetalleCapacitaciones;
     }
+
+    @Override
+    public Capacitacion getElementById(Long id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

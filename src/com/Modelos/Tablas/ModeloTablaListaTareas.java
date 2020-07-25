@@ -4,14 +4,14 @@ import com.DAO.DAOClientes;
 import com.DAO.DAOTareas;
 import com.DAO.DAOException;
 import com.DAO.Recursos.GestionarRecursos;
-import com.modelo.Parametros;
-import com.modelo.Tarea;
+import com.Modelo.Parametros;
+import com.Modelo.Tarea;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListaTareasTableModel extends ModeloTabla<Tarea, DAOTareas> {
+public class ModeloTablaListaTareas extends ModeloTabla<Tarea, DAOTareas> {
 
     private Long id_cliente;
     private LocalDate fecha_ini;
@@ -19,7 +19,7 @@ public class ListaTareasTableModel extends ModeloTabla<Tarea, DAOTareas> {
     private List<Tarea> lista = new ArrayList<>();
     private DAOClientes daoClientes;
 
-    public ListaTareasTableModel(DAOTareas solicitaModelo, DAOClientes daoClientes) {
+    public ModeloTablaListaTareas(DAOTareas solicitaModelo, DAOClientes daoClientes) {
         super(solicitaModelo);
         this.daoClientes = daoClientes;
         id_cliente = null;
@@ -77,6 +77,11 @@ public class ListaTareasTableModel extends ModeloTabla<Tarea, DAOTareas> {
         id_cliente = cliente;
         this.fecha_ini = fecha_ini;
         this.fecha_fin = fecha_fin;
+    }
+
+    @Override
+    public Tarea getElementById(Long id) {
+        return this.listaDatos.stream().filter(e -> e.getId().equals(id)).findFirst().get();
     }
 
 }

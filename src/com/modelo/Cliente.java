@@ -1,8 +1,8 @@
-package com.modelo;
+package com.Modelo;
 
 import java.util.Objects;
 
-public class Cliente implements Comparable<Cliente> {
+public class Cliente extends ModeloGeneral implements Comparable<Cliente> {
 
     private Long id;
     private String nombre;
@@ -110,6 +110,11 @@ public class Cliente implements Comparable<Cliente> {
     @Override
     public int compareTo(Cliente o) {
         return this.getNombre().compareToIgnoreCase(o.getNombre());
+    }
+
+    @Override
+    public Long getIdElement() {
+        return this.id;
     }
 
 }

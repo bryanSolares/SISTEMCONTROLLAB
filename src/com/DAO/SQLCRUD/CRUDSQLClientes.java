@@ -3,7 +3,7 @@ package com.DAO.SQLCRUD;
 import com.DAO.DAOClientes;
 import com.DAO.DAOException;
 import com.DAO.Recursos.GestionarRecursos;
-import com.modelo.Cliente;
+import com.Modelo.Cliente;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

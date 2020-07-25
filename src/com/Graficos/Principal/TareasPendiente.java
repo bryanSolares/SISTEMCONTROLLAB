@@ -5,11 +5,11 @@ import com.DAO.DAOManager;
 import com.DAO.Recursos.GestionarRecursos;
 import com.DAO.Recursos.Validaciones;
 import com.Graficos.Tarea.DatosTarea;
-import com.Modelos.Combos.ClientesComboModel;
+import com.Modelos.Combos.ModeloComboClientes;
 import com.Modelos.Tablas.ModeloTablaTarea;
-import com.modelo.Cliente;
-import com.modelo.Parametros;
-import com.modelo.Tarea;
+import com.Modelo.Cliente;
+import com.Modelo.Parametros;
+import com.Modelo.Tarea;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
 
 public class TareasPendiente extends javax.swing.JPanel {
 
-    private ClientesComboModel modeloComboClientes;
+    private ModeloComboClientes modeloComboClientes;
     private ModeloTablaTarea modeloTablaTareas;
     private Tarea tarea;
     private DAOManager manager;
@@ -26,7 +26,7 @@ public class TareasPendiente extends javax.swing.JPanel {
 
     public TareasPendiente() {
         initComponents();
-        modeloComboClientes = new ClientesComboModel();
+        modeloComboClientes = new ModeloComboClientes();
         this.JCB_clientes.setModel(modeloComboClientes);
         this.tarea = new Tarea();
 
@@ -66,6 +66,9 @@ public class TareasPendiente extends javax.swing.JPanel {
         this.JTBL_tareas.getColumnModel().getColumn(7).setPreferredWidth(500);
         this.JTBL_tareas.getColumnModel().getColumn(8).setPreferredWidth(0);
         this.JTBL_tareas.getColumnModel().getColumn(9).setPreferredWidth(0);
+        
+        this.JTBL_tareas.setRowHeight(35);
+        
     }
 
     public void actualizarModelos() throws DAOException {

@@ -1,6 +1,6 @@
 package com.DAO.Recursos;
 
-import com.modelo.Parametros;
+import com.Modelo.Parametros;
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;

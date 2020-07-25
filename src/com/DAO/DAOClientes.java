@@ -1,6 +1,6 @@
 package com.DAO;
 
-import com.modelo.Cliente;
+import com.Modelo.Cliente;
 
 public interface DAOClientes extends DAO<Cliente, Long> {
 

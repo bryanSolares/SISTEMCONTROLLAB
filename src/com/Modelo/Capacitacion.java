@@ -1,11 +1,9 @@
 package com.Modelo;
 
-import com.modelo.Parametros;
-import com.modelo.Cliente;
 import java.time.LocalDate;
 import java.util.List;
 
-public class Capacitacion {
+public class Capacitacion extends ModeloGeneral{
 
     private Long idCapacitacion;
     private Cliente idCliente;
@@ -27,7 +25,12 @@ public class Capacitacion {
         this.tipoCapacitacion = tipoCapacitacion;
     }
 
-    public class CapacitacionDetalle {
+    @Override
+    public Long getIdElement() {
+        return this.idCapacitacion;
+    }
+
+    public class CapacitacionDetalle extends ModeloGeneral{
 
         private Capacitacion idCapacitacion;
         private Parametros codModulo;
@@ -97,6 +100,11 @@ public class Capacitacion {
         @Override
         public String toString() {
             return "CapacitacionDetalle{" + "idCapacitacion=" + idCapacitacion + ", codModulo=" + codModulo + ", descripcionModulo=" + descripcionModulo + ", fecha_inicio=" + fecha_inicio + ", fecha_fin=" + fecha_fin + ", estado=" + estado + '}';
+        }
+
+        @Override
+        public Long getIdElement() {
+            return this.idCapacitacion.getIdCapacitacion();
         }
 
     }

@@ -2,7 +2,7 @@ package com.Modelos.Tablas;
 
 import com.DAO.DAOException;
 import com.DAO.DAOTareas;
-import com.modelo.Tarea;
+import com.Modelo.Tarea;
 
 public class ModeloTareasDetalle extends ModeloTabla<Tarea.TareaDetalle, DAOTareas> {
 
@@ -36,6 +36,11 @@ public class ModeloTareasDetalle extends ModeloTabla<Tarea.TareaDetalle, DAOTare
     
     public void setTarea(Long id){
         this.tarea = id;
+    }
+
+    @Override
+    public Tarea.TareaDetalle getElementById(Long id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
